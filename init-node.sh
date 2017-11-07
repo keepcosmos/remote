@@ -6,26 +6,25 @@ function install {
     sudo apt -y install "$@" > /dev/null 2>&1
 }
 
-sudo apt-get -y update
+sudo apt-get -y update > /dev/null 2>&1
 install Tmux tmux
 
 sudo add-apt-repository ppa:jonathonf/vim
-sudo apt -y update
-install Vim vim
+sudo apt -y update >/dev/null 2>&1
 install Mosh mosh
 
 install "Oh-my-zsh" zsh
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)" >/dev/null 2>&1
-echo "export EDITOR=vim" >> ~/.zshrc
 
 install "essentials" build-essential curl wget libsqlite3-dev libpq-dev
 
 install Redis redis-server redis-tools
 
-echo "installing rvm and ruby"
+echo "installing rvm"
 gpg --keyserver hkp://keys.gnupg.net --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3 7D2BAF1CF37B13E2069D6956105BD0E739499BDB
 curl -sSL https://get.rvm.io | bash -s stable
 source ~/.rvm/scripts/rvm
+echo "installing ruby 2.4"
 rvm install 2.4 >/dev/null 2>&1
 gem update --system >/dev/null 2>&1
 gem install bundler >/dev/null 2>&1
@@ -64,3 +63,13 @@ sudo add-apt-repository \
 sudo apt-get update
 
 sudo apt-get -y install docker-ce
+
+install Vim vim
+git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
+
+echo "install powerline font"
+git clone https://github.com/powerline/fonts.git --depth=1
+./fonts/install.sh
+rm -rf fonts
+
+
