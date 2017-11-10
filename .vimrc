@@ -2,6 +2,7 @@ set nocompatible	" be iMproved, required
 filetype off		" required
 
 set number
+syntax on
 
 imap jj <Esc>
 

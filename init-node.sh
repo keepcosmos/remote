@@ -9,6 +9,8 @@ function install {
 sudo apt-get -y update > /dev/null 2>&1
 install Tmux tmux
 
+install Tree tree
+
 sudo add-apt-repository ppa:jonathonf/vim
 sudo apt -y update >/dev/null 2>&1
 install Mosh mosh
@@ -19,6 +21,15 @@ sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/mas
 install "essentials" build-essential curl wget libsqlite3-dev libpq-dev
 
 install Redis redis-server redis-tools
+
+sudo add-apt-repository "deb https://apt.postgresql.org/pub/repos/apt/ trusty-pgdg main"
+wget --quiet -O - https://postgresql.org/media/keys/ACCC4CF8.asc | sudo apt-key add -
+sudo apt-get update
+install PostgreSQL postgresql-9.4 postgresql-contrib-9.4 libpq-dev
+#install PostgreSQL postgresql postgresql-contrib libpq-dev  │ 22 
+sudo -u postgres createuser --superuser ubuntu
+
+install Mongodb mongodb-org
 
 echo "installing rvm"
 gpg --keyserver hkp://keys.gnupg.net --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3 7D2BAF1CF37B13E2069D6956105BD0E739499BDB
