@@ -76,6 +76,9 @@ sudo apt-get -y install docker-ce
 install Vim vim
 git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 echo "export EDITOR=vim" >> ~/.zshrc
+echo "Create .vimrc symbolic link"
+THISPATH="$( cd "$(dirname "$0")" ; pwd -P )"
+ln -s $THISPATH/vimrc ~/.vimrc
 
 echo "install powerline font"
 git clone https://github.com/powerline/fonts.git --depth=1

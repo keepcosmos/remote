@@ -5,6 +5,8 @@ set number
 syntax on
 
 imap jj <Esc>
+imap jk <Esc>
+imap kj <Esc>
 
 " set the runtime path to include Vundle and initialize
 set rtp+=~/.vim/bundle/Vundle.vim
