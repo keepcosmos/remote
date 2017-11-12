@@ -11,37 +11,35 @@ install Tmux tmux
 
 install Tree tree
 
-sudo add-apt-repository ppa:jonathonf/vim
+printf '\n' | sudo add-apt-repository ppa:jonathonf/vim
 sudo apt -y update >/dev/null 2>&1
-install Mosh mosh
 
 install "Oh-my-zsh" zsh
-sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)" >/dev/null 2>&1
+printf '\n' | sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)" >/dev/null 2>&1
+echo "export TERM=xterm-256color" >> ~/.zshrc
 
-install "essentials" build-essential curl wget libsqlite3-dev libpq-dev
+install "essentials" build-essential curl wget libsqlite3-dev 
 
 install Redis redis-server redis-tools
 
 sudo add-apt-repository "deb https://apt.postgresql.org/pub/repos/apt/ trusty-pgdg main"
 wget --quiet -O - https://postgresql.org/media/keys/ACCC4CF8.asc | sudo apt-key add -
-sudo apt-get update
+sudo apt-get -y update >/dev/null 2>&1
 install PostgreSQL postgresql-9.4 postgresql-contrib-9.4 libpq-dev
-#install PostgreSQL postgresql postgresql-contrib libpq-dev  │ 22 
+sudo /etc/init.d/postgresql start
 sudo -u postgres createuser --superuser ubuntu
 
 install Mongodb mongodb-org
 
 echo "installing rvm"
 gpg --keyserver hkp://keys.gnupg.net --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3 7D2BAF1CF37B13E2069D6956105BD0E739499BDB
-curl -sSL https://get.rvm.io | bash -s stable
+curl -sSL https://get.rvm.io | bash -s stable > /dev/null
 source ~/.rvm/scripts/rvm
 echo "installing ruby 2.4"
 rvm install 2.4 >/dev/null 2>&1
 gem update --system >/dev/null 2>&1
 gem install bundler >/dev/null 2>&1
 rvm rvmrc warning ignore allGemfiles
-
-sudo update-locale LANG=en_US.UTF-8 LANGUAGE=en_US.UTF-8 LC_ALL=en_US.UTF-8
 
 echo "installing java-8"
 echo debconf shared/accepted-oracle-license-v1-1 select true | sudo debconf-set-selections
@@ -77,10 +75,12 @@ sudo apt-get -y install docker-ce
 
 install Vim vim
 git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
+echo "export EDITOR=vim" >> ~/.zshrc
 
 echo "install powerline font"
 git clone https://github.com/powerline/fonts.git --depth=1
 ./fonts/install.sh
 rm -rf fonts
 
-
+echo "Set zsh as a default"
+chsh -s $(which zsh)
