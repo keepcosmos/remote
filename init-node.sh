@@ -80,6 +80,9 @@ echo "Create .vimrc symbolic link"
 THISPATH="$( cd "$(dirname "$0")" ; pwd -P )"
 ln -s $THISPATH/vimrc ~/.vimrc
 
+echo "Installing heroku toolbelt"
+wget -qO- https://cli-assets.heroku.com/install-ubuntu.sh | sh >/dev/null
+
 echo "install powerline font"
 git clone https://github.com/powerline/fonts.git --depth=1
 ./fonts/install.sh
