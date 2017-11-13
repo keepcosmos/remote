@@ -29,14 +29,18 @@ install PostgreSQL postgresql-9.4 postgresql-contrib-9.4 libpq-dev
 sudo /etc/init.d/postgresql start
 sudo -u postgres createuser --superuser ubuntu
 
+echo "Installing mongodb"
+sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv EA312927
+echo "deb http://repo.mongodb.org/apt/ubuntu "$(lsb_release -sc)"/mongodb-org/3.2 multiverse" | sudo tee /etc/apt/sources.list.d/mongodb-org-3.2.list >/dev/null
+sudo apt-get -y update >/dev/null
 install Mongodb mongodb-org
 
 echo "installing rvm"
 gpg --keyserver hkp://keys.gnupg.net --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3 7D2BAF1CF37B13E2069D6956105BD0E739499BDB
 curl -sSL https://get.rvm.io | bash -s stable > /dev/null
 source ~/.rvm/scripts/rvm
-echo "installing ruby 2.4"
-rvm install 2.4 >/dev/null 2>&1
+echo "installing ruby 2.3.3"
+rvm install 2.3.3 >/dev/null 2>&1
 gem update --system >/dev/null 2>&1
 gem install bundler >/dev/null 2>&1
 rvm rvmrc warning ignore allGemfiles
