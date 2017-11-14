@@ -77,13 +77,6 @@ sudo apt-get update
 
 sudo apt-get -y install docker-ce
 
-install Vim vim
-git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
-echo "export EDITOR=vim" >> ~/.zshrc
-echo "Create .vimrc symbolic link"
-THISPATH="$( cd "$(dirname "$0")" ; pwd -P )"
-ln -s $THISPATH/vimrc ~/.vimrc
-
 echo "Installing heroku toolbelt"
 wget -qO- https://cli-assets.heroku.com/install-ubuntu.sh | sh >/dev/null
 
