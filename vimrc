@@ -27,7 +27,7 @@ Plugin 'terryma/vim-multiple-cursors'
 Plugin 'ctrlpvim/ctrlp.vim'
 
 Plugin 'vim-ruby/vim-ruby'
-
+Plugin 'python-mode/python-mode'
 
 call vundle#end()	" required
 filetype plugin indent on	" required
