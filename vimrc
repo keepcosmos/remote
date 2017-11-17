@@ -26,6 +26,9 @@ Plugin 'jiangmiao/auto-pairs'
 Plugin 'terryma/vim-multiple-cursors'
 Plugin 'ctrlpvim/ctrlp.vim'
 
+Plugin 'vim-ruby/vim-ruby'
+
+
 call vundle#end()	" required
 filetype plugin indent on	" required
 
